@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/app/theme.dart';
@@ -23,8 +24,9 @@ class SettingsTileWidget extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(bottom: bottom ? 8 : 0),
-          child: GestureDetector(
-            onTap: onClick,
+          child: CupertinoButton(
+            onPressed: onClick,
+            padding: EdgeInsets.zero,
             child: Row(
               children: [
                 DecoratedBox(

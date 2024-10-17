@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../../core/app/app.dart';
 import '../../../../core/constants/colors.dart';
@@ -12,8 +12,10 @@ class SettingsButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
-      child: GestureDetector(
-        onTap: () => appRouter.push(SettingsRoute()),
+      child: CupertinoButton(
+        onPressed: () => appRouter.push(SettingsRoute()),
+        minSize: 1,
+        padding: EdgeInsets.zero,
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),

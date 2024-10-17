@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../core/app/theme.dart';
 import '../../../../core/common/widgets/app_button.dart';
 import '../../../../core/constants/colors.dart';
+import '../../../main/domain/repositories/config.dart';
 import '../manager/viewmodel.dart';
 import '../widgets/onboarding_1.dart';
 import '../widgets/onboarding_2.dart';
@@ -75,24 +77,40 @@ class OnboardingPage extends HookWidget {
                   alignment: WrapAlignment.center,
                   spacing: 32,
                   children: [
-                    Text(
-                      'Terms of Use',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: AppColors.tertiary,
+                    GestureDetector(
+                      onTap: () async {
+                        final url = RemoteConfigService.I.termsLink;
+                        if (await canLaunchUrlString(url)) {
+                          await launchUrlString(url);
+                        }
+                      },
+                      child: Text(
+                        'Terms of Use',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: AppColors.tertiary,
+                        ),
                       ),
                     ),
-                    Text(
-                      'Privacy Policy',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: AppColors.tertiary,
+                    GestureDetector(
+                      onTap: () async {
+                        final url = RemoteConfigService.I.privacyLink;
+                        if (await canLaunchUrlString(url)) {
+                          await launchUrlString(url);
+                        }
+                      },
+                      child: Text(
+                        'Privacy Policy',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: AppColors.tertiary,
+                        ),
                       ),
                     ),
-                    Text(
-                      'Restore',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: AppColors.tertiary,
-                      ),
-                    ),
+                    // Text(
+                    //   'Restore',
+                    //   style: theme.textTheme.bodySmall?.copyWith(
+                    //     color: AppColors.tertiary,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

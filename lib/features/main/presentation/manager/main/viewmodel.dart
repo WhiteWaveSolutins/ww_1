@@ -37,7 +37,7 @@ class InstagramViewModel extends ChangeNotifier {
     await prefs.init();
     final appDir = await getApplicationDocumentsDirectory();
     final path = '${appDir.path}/${prefs.instagramAccountDir}';
-    if (path.isNotEmpty) {
+    if (prefs.instagramAccountDir.isNotEmpty) {
       _updateState(state.copyWith(path: path));
     }
   }

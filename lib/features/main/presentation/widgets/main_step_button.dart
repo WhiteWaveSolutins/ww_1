@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/app/theme.dart';
@@ -30,8 +31,9 @@ class MainStepButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
+    return CupertinoButton(
+      onPressed: onPressed,
+      padding: EdgeInsets.zero,
       child: Stack(
         children: [
           Padding(

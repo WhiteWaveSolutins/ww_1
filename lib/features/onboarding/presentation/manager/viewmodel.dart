@@ -20,7 +20,7 @@ class OnboardingViewModel extends ChangeNotifier {
 
   Future<void> nextPage() async {
     final page = (pageController.page ?? 0).toInt();
-    if (page < 3) {
+    if (page < 2) {
       pageController.nextPage(
         duration: Duration(milliseconds: 300),
         curve: Curves.linear,

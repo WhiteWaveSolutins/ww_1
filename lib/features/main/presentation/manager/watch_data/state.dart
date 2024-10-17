@@ -1,19 +1,17 @@
+import 'package:flutter/material.dart';
+
 class UserDataState {
-  final String avatarPath;
-  final String username;
+  final List<Widget> stories;
 
   const UserDataState({
-    this.avatarPath = '',
-    this.username = '',
+    this.stories = const [],
   });
 
   UserDataState copyWith({
-    String? avatarPath,
-    String? username,
+    List<Widget>? stories,
   }) {
     return UserDataState(
-      avatarPath: avatarPath ?? this.avatarPath,
-      username: username ?? this.username,
+      stories: stories ?? this.stories,
     );
   }
 }

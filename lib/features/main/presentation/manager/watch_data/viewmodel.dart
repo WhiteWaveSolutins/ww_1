@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../domain/entities/blocked_users.dart';
+import '../../../domain/entities/comments_block.dart';
+import '../../../domain/entities/followers_block.dart';
 import '../../../domain/entities/last_watched_videos.dart';
+import '../../../domain/entities/location_block.dart';
+import '../../../domain/entities/topics_block.dart';
+import '../../../domain/entities/users_hidden_story.dart';
 import '../../../domain/repositories/parser.dart';
 import '../../widgets/story/story_1.dart';
 import '../../widgets/story/story_10.dart';
@@ -23,12 +29,16 @@ import 'state.dart';
 class WatchDataViewModel extends ChangeNotifier {
   final String path;
 
-  WatchDataViewModel(this.path);
+  WatchDataViewModel(this.path) {
+    init();
+  }
 
   var _state = UserDataState();
   UserDataState get state => _state;
   Parser get parser => Parser(path);
   final dateFormat = DateFormat('dd/MM/yyyy');
+
+  final shareWidget = GlobalKey();
 
   void _updateState(UserDataState state) {
     if (_state != state) {
@@ -55,7 +65,6 @@ class WatchDataViewModel extends ChangeNotifier {
   }
 
   (int, int) get firstAndLastStory => parser.getFirstAndLastStories() ?? (0, 0);
-
   String get lastUsernameSearched =>
       parser
           .getProfileSearched()
@@ -85,6 +94,28 @@ class WatchDataViewModel extends ChangeNotifier {
           0) *
       1000);
   String get creationDate => dateFormat.format(creationDateTime);
+  List<CommentsBlock> get comments => parser.getComments() ?? [];
+  List<UsersHiddenStoryItem> get hiddenStories =>
+      ((parser.getUsersYouHiddenStories()?.relationshipsHideStoriesFrom) ?? [])
+          .take(5)
+          .toList();
+  List<BlockedUsersItem> get blockedUsers =>
+      ((parser.getBlockedUsers()?.relationshipsBlockedUsers) ?? [])
+          .take(5)
+          .toList();
+  List<FollowersBlock> get followers =>
+      parser.getFollowers()?.take(5).toList() ?? [];
+  List<TopicsBlockItemName> get topics =>
+      parser
+          .getTopics()
+          ?.topicsYourTopics
+          .where((e) => e.stringMapData != null)
+          .map((e) => e.stringMapData!)
+          .take(5)
+          .toList() ??
+      [];
+  List<LocationBlockItem> get location =>
+      parser.getLocation()?.accountHistoryImpreciseLastKnownLocation ?? [];
 
   Widget getStory(int index) => switch (index) {
         0 => Story1Widget(),
@@ -104,4 +135,28 @@ class WatchDataViewModel extends ChangeNotifier {
         14 => Story15Widget(),
         _ => SizedBox(),
       };
+
+  void init() {
+    _updateState(
+      state.copyWith(
+        stories: [
+          Story1Widget(),
+          // Story2Widget(),
+          if (parser.getUsersYouHiddenStories() != null) Story3Widget(),
+          if (parser.getLastVideoWatched() != null) Story4Widget(),
+          // Story5Widget(),
+          if (parser.getBlockedUsers() != null) Story6Widget(),
+          if (parser.getTopics() != null) Story7Widget(),
+          if (parser.getComments() != null) Story8Widget(),
+          if (parser.getFollowers() != null) Story9Widget(),
+          if (parser.getLocation() != null) Story10Widget(),
+          if (parser.getAuthDevicesCount() != null) Story11Widget(),
+          if (parser.getComments() != null) Story12Widget(),
+          if (parser.getFirstAndLastStories() != null) Story13Widget(),
+          if (parser.getLinkHistory() != null) Story14Widget(),
+          if (parser.getProfileSearched() != null) Story15Widget(),
+        ],
+      ),
+    );
+  }
 }

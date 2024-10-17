@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../constants/colors.dart';
 
@@ -19,14 +19,9 @@ class AppButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        maximumSize: Size.fromHeight(60),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        padding: EdgeInsets.zero,
-      ),
+    return CupertinoButton(
+      minSize: 60,
+      padding: EdgeInsets.zero,
       onPressed: onPressed,
       child: DecoratedBox(
         decoration: BoxDecoration(

@@ -161,6 +161,9 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding4 =>
       const AssetGenImage('assets/images/onboarding-4.png');
 
+  /// File path: assets/images/planet.png
+  AssetGenImage get planet => const AssetGenImage('assets/images/planet.png');
+
   /// File path: assets/images/story-1.png
   AssetGenImage get story1 => const AssetGenImage('assets/images/story-1.png');
 
@@ -175,6 +178,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/story-12.png
   AssetGenImage get story12 =>
       const AssetGenImage('assets/images/story-12.png');
+
+  /// File path: assets/images/story-13-1.png
+  AssetGenImage get story131 =>
+      const AssetGenImage('assets/images/story-13-1.png');
+
+  /// File path: assets/images/story-13-2.png
+  AssetGenImage get story132 =>
+      const AssetGenImage('assets/images/story-13-2.png');
 
   /// File path: assets/images/story-13.png
   AssetGenImage get story13 =>
@@ -231,10 +242,13 @@ class $AssetsImagesGen {
         onboarding2,
         onboarding3,
         onboarding4,
+        planet,
         story1,
         story10,
         story11,
         story12,
+        story131,
+        story132,
         story13,
         story14,
         story15,

@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/gen/assets.gen.dart';
+import '../../domain/repositories/config.dart';
 import 'settings_tile.dart';
 
 class SettingsBlockWidget extends StatelessWidget {
@@ -25,14 +27,19 @@ class SettingsBlockWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
+                  // SettingsTileWidget(
+                  //   icon: Assets.icons.browser.image(
+                  //     width: 15,
+                  //     height: 15,
+                  //   ),
+                  //   title: 'About us',
+                  // ),
                   SettingsTileWidget(
-                    icon: Assets.icons.browser.image(
-                      width: 15,
-                      height: 15,
+                    onClick: () => showAboutDialog(
+                      context: context,
+                      applicationVersion: '1.0.0',
+                      applicationName: 'Wraplt',
                     ),
-                    title: 'About us',
-                  ),
-                  SettingsTileWidget(
                     icon: Assets.icons.version.image(
                       width: 15,
                       height: 15,
@@ -40,6 +47,12 @@ class SettingsBlockWidget extends StatelessWidget {
                     title: 'Version',
                   ),
                   SettingsTileWidget(
+                    onClick: () async {
+                      final url = RemoteConfigService.I.privacyLink;
+                      if (await canLaunchUrlString(url)) {
+                        await launchUrlString(url);
+                      }
+                    },
                     icon: Assets.icons.privacy.image(
                       width: 15,
                       height: 15,
@@ -54,6 +67,12 @@ class SettingsBlockWidget extends StatelessWidget {
                     title: 'Rate us',
                   ),
                   SettingsTileWidget(
+                    onClick: () async {
+                      final url = RemoteConfigService.I.termsLink;
+                      if (await canLaunchUrlString(url)) {
+                        await launchUrlString(url);
+                      }
+                    },
                     icon: Assets.icons.rate.image(
                       width: 15,
                       height: 13,

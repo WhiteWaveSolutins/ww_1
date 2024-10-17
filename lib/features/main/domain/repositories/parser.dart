@@ -1,14 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
 
+import '../../../../core/app/logger.dart';
 import '../entities/account_registration_history.dart';
+import '../entities/blocked_users.dart';
+import '../entities/comments_block.dart';
+import '../entities/followers_block.dart';
 import '../entities/last_watched_videos.dart';
 import '../entities/liked_posts.dart';
 import '../entities/link_history.dart';
+import '../entities/location_block.dart';
 import '../entities/personal_information.dart';
 import '../entities/profile_searched.dart';
 import '../entities/saved_posts.dart';
 import '../entities/story_likes.dart';
+import '../entities/topics_block.dart';
+import '../entities/users_hidden_story.dart';
 
 class Parser {
   final String path;
@@ -16,29 +23,45 @@ class Parser {
   Parser(this.path);
 
   PersonalInformation? getPersonalInformation() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/personal_information/personal_information/personal_information.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    return PersonalInformation.fromJson(json);
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/personal_information/personal_information/personal_information.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return PersonalInformation.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   LikedPosts? getLikedPosts() {
-    if (path.isEmpty) return null;
-    final profilePath = '$path/your_instagram_activity/likes/liked_posts.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    return LikedPosts.fromJson(json);
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/your_instagram_activity/likes/liked_posts.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return LikedPosts.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   AccountRegistrationHistory? getAccountRegistrationHistory() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/security_and_login_information/login_and_profile_creation/instagram_signup_details.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    return AccountRegistrationHistory.fromJson(json);
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/security_and_login_information/login_and_profile_creation/instagram_signup_details.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return AccountRegistrationHistory.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   int? getLikesPostCount() {
@@ -55,18 +78,29 @@ class Parser {
   }
 
   SavedPosts? getSavedPosts() {
-    if (path.isEmpty) return null;
-    final profilePath = '$path/your_instagram_activity/saved/saved_posts.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    return SavedPosts.fromJson(json);
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/your_instagram_activity/saved/saved_posts.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return SavedPosts.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   int? getDmsCount() {
-    if (path.isEmpty) return null;
-    final profilePath = '$path/your_instagram_activity/messages/inbox';
-    final directory = Directory(profilePath);
-    return directory.listSync().length;
+    try {
+      if (path.isEmpty) return null;
+      final profilePath = '$path/your_instagram_activity/messages/inbox';
+      final directory = Directory(profilePath);
+      return directory.listSync().length;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   int? getSavedPostCount() {
@@ -74,93 +108,238 @@ class Parser {
   }
 
   StoryLikes? getStoryLikes() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/your_instagram_activity/story_sticker_interactions/story_likes.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    return StoryLikes.fromJson(json);
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/your_instagram_activity/story_sticker_interactions/story_likes.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return StoryLikes.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   int? getStoryResponsesCount() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/your_instagram_activity/story_sticker_interactions/questions.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    final list = json['story_activities_questions'] as List<dynamic>;
-    return list.length;
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/your_instagram_activity/story_sticker_interactions/questions.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      final list = json['story_activities_questions'] as List<dynamic>;
+      return list.length;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   int? getAuthDevicesCount() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/personal_information/device_information/devices.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    final list = json['devices_devices'] as List<dynamic>;
-    return list.length;
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/personal_information/device_information/devices.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      final list = json['devices_devices'] as List<dynamic>;
+      return list.length;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   ProfileSearched? getProfileSearched() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/logged_information/recent_searches/profile_searches.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    return ProfileSearched.fromJson(json);
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/logged_information/recent_searches/profile_searches.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return ProfileSearched.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   List<VideoDataMap>? getLastVideoWatched() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/ads_information/ads_and_topics/videos_watched.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    final videosData = LastWatchedVideos.fromJson(json);
-    final videos = videosData.impressionsHistoryVideosWatched;
-    final videosList = videos
-        .where((e) => e.stringMapData != null)
-        .map((e) => e.stringMapData!)
-        .toList();
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/ads_information/ads_and_topics/videos_watched.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      final videosData = LastWatchedVideos.fromJson(json);
+      final videos = videosData.impressionsHistoryVideosWatched;
+      final videosList = videos
+          .where((e) => e.stringMapData != null)
+          .map((e) => e.stringMapData!)
+          .toList();
 
-    videosList.sort(
-      (a, b) => (b.time?.timestamp ?? 0).compareTo(
-        (a.time?.timestamp ?? 0),
-      ),
-    );
-    return videosList.length > 5 ? videosList.sublist(0, 5) : videosList;
+      videosList.sort(
+        (a, b) => (b.time?.timestamp ?? 0).compareTo(
+          (a.time?.timestamp ?? 0),
+        ),
+      );
+      return videosList.length > 5 ? videosList.sublist(0, 5) : videosList;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   List<LinkHistoryItem>? getLinkHistory() {
-    if (path.isEmpty) return null;
-    final profilePath =
-        '$path/logged_information/link_history/link_history.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    final linkHistoryData = json['label_values'] as List<dynamic>;
-    final List<LinkHistoryItem> links = [];
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/logged_information/link_history/link_history.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      final linkHistoryData = json['label_values'] as List<dynamic>;
+      final List<LinkHistoryItem> links = [];
 
-    for (var value in linkHistoryData) {
-      links.add(LinkHistoryItem.fromJson(value));
+      for (var value in linkHistoryData) {
+        links.add(LinkHistoryItem.fromJson(value));
+      }
+      return links;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
     }
-    return links;
   }
 
   (int, int)? getFirstAndLastStories() {
-    if (path.isEmpty) return null;
-    final profilePath = '$path/your_instagram_activity/content/stories.json';
-    final data = File(profilePath).readAsStringSync();
-    final json = jsonDecode(data);
-    final storiesData = json['ig_stories'] as List<dynamic>;
-    final first = storiesData.first;
-    final last = storiesData.last;
+    try {
+      if (path.isEmpty) return null;
+      final profilePath = '$path/your_instagram_activity/content/stories.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      final storiesData = json['ig_stories'] as List<dynamic>;
+      final first = storiesData.first;
+      final last = storiesData.last;
 
-    return (first['creation_timestamp'], last['creation_timestamp']);
+      return (first['creation_timestamp'], last['creation_timestamp']);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   int? getStoryLikesCount() {
-    return getStoryLikes()?.storyActivitiesStoryLikes.length;
+    try {
+      return getStoryLikes()?.storyActivitiesStoryLikes.length;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
+  }
+
+  List<CommentsBlock>? getComments() {
+    try {
+      if (path.isEmpty) return null;
+      final profilePath = '$path/your_instagram_activity/comments/';
+      final directory = Directory(profilePath);
+      final files = directory.listSync();
+      for (var file in files) {
+        if (file.path.split('/').last.startsWith('post_comments')) {
+          final data = File(file.path).readAsStringSync();
+          final json = jsonDecode(data) as List<dynamic>;
+          final comments = <CommentsBlock>[];
+
+          for (var e in json) {
+            comments.add(CommentsBlock.fromJson(e));
+          }
+          return comments.reversed.toList();
+        }
+      }
+      return null;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
+  }
+
+  UsersHiddenStory? getUsersYouHiddenStories() {
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/connections/followers_and_following/hide_story_from.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return UsersHiddenStory.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
+  }
+
+  BlockedUsers? getBlockedUsers() {
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/connections/followers_and_following/blocked_profiles.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return BlockedUsers.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
+  }
+
+  List<FollowersBlock>? getFollowers() {
+    try {
+      if (path.isEmpty) return null;
+      final profilePath = '$path/connections/followers_and_following/';
+      final directory = Directory(profilePath);
+      final files = directory.listSync();
+      for (var file in files) {
+        if (file.path.split('/').last.startsWith('followers')) {
+          final data = File(file.path).readAsStringSync();
+          final json = jsonDecode(data) as List<dynamic>;
+          final comments = <FollowersBlock>[];
+
+          for (var e in json) {
+            comments.add(FollowersBlock.fromJson(e));
+          }
+          return comments.reversed.toList();
+        }
+      }
+      return null;
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
+  }
+
+  TopicsBlock? getTopics() {
+    try {
+      if (path.isEmpty) return null;
+      final profilePath = '$path/preferences/your_topics/your_topics.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return TopicsBlock.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
+  }
+
+  LocationBlock? getLocation() {
+    try {
+      if (path.isEmpty) return null;
+      final profilePath =
+          '$path/security_and_login_information/login_and_profile_creation/last_known_location.json';
+      final data = File(profilePath).readAsStringSync();
+      final json = jsonDecode(data);
+      return LocationBlock.fromJson(json);
+    } catch (e, s) {
+      talker.handle(e, s);
+      return null;
+    }
   }
 
   String? getAvatar() {

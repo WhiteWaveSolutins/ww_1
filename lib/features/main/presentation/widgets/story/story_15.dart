@@ -13,74 +13,77 @@ class Story15Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.read<WatchDataViewModel>();
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        SizedBox.expand(
-          child: Assets.images.story15.image(
-            fit: BoxFit.cover,
+    return RepaintBoundary(
+      key: viewModel.shareWidget,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          SizedBox.expand(
+            child: Assets.images.story15.image(
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        SizedBox.expand(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 70),
-            child: Column(
-              children: [
-                Text(
-                  'Last user search',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    color: AppColors.tertiary,
+          SizedBox.expand(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 70),
+              child: Column(
+                children: [
+                  Text(
+                    'Last user search',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: AppColors.tertiary,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: AppColors.gradient1,
-                    shape: BoxShape.circle,
+                  SizedBox(
+                    height: 50,
                   ),
-                  child: SizedBox.square(
-                    dimension: 150,
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: ClipOval(
-                        child: Center(
-                          child: Icon(
-                            Icons.person,
-                            size: 100,
-                            color: Colors.white,
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: AppColors.gradient1,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SizedBox.square(
+                      dimension: 150,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: ClipOval(
+                          child: Center(
+                            child: Icon(
+                              Icons.person,
+                              size: 100,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                Expanded(
-                  child: Text(
-                    viewModel.lastUsernameSearched,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: Colors.white,
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Expanded(
+                    child: Text(
+                      viewModel.lastUsernameSearched,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  viewModel.lastUserSearchedDateTime,
-                  style: theme.textTheme.displaySmall?.copyWith(
-                    color: AppColors.surface,
+                  Text(
+                    viewModel.lastUserSearchedDateTime,
+                    style: theme.textTheme.displaySmall?.copyWith(
+                      color: AppColors.surface,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 35,
-                )
-              ],
+                  SizedBox(
+                    height: 35,
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
