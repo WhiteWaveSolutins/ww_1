@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import '../../../../core/app/logger.dart';
@@ -251,10 +250,17 @@ class Parser {
           final comments = <CommentsBlock>[];
 
           for (var e in json) {
-            final value = (e['string_map_data']['Comment']['value'] as String).codeUnits;
-            final decoded = utf8.decode(value);
-            log('DECODED: $decoded');
-            comments.add(CommentsBlock.fromJson(e));
+            var commentItem = CommentsBlock.fromJson(e);
+            final value = commentItem.stringMapData?.comment?.value.codeUnits;
+            final decoded = utf8.decode(value ?? []);
+            commentItem = commentItem.copyWith(
+              stringMapData: commentItem.stringMapData?.copyWith(
+                comment: commentItem.stringMapData?.comment?.copyWith(
+                  value: decoded,
+                ),
+              ),
+            );
+            comments.add(commentItem);
           }
           return comments.reversed.toList();
         }
