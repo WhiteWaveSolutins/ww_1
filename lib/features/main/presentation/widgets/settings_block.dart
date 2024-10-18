@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../core/constants/colors.dart';
@@ -60,6 +61,13 @@ class SettingsBlockWidget extends StatelessWidget {
                     title: 'Privacy Policy',
                   ),
                   SettingsTileWidget(
+                    onClick: () async {
+                      final InAppReview inAppReview = InAppReview.instance;
+
+                      if (await inAppReview.isAvailable()) {
+                        inAppReview.requestReview();
+                      }
+                    },
                     icon: Assets.icons.rate.image(
                       width: 15,
                       height: 13,
