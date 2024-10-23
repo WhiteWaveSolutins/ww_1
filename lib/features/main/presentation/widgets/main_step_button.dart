@@ -16,6 +16,8 @@ class MainStepButtonWidget extends StatelessWidget {
   final bool isLock;
   final Color? backgroundColor;
   final Gradient? backgroundGradient;
+  final double? blur;
+  final double? titlePadding;
 
   const MainStepButtonWidget({
     super.key,
@@ -27,6 +29,8 @@ class MainStepButtonWidget extends StatelessWidget {
     this.isLock = false,
     this.backgroundColor,
     this.backgroundGradient,
+    this.blur,
+    this.titlePadding,
   });
 
   @override
@@ -40,7 +44,7 @@ class MainStepButtonWidget extends StatelessWidget {
             padding: EdgeInsets.only(top: isLock ? 8 : 0),
             child: ClipRRect(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                filter: ImageFilter.blur(sigmaX: blur ?? 5, sigmaY: blur ?? 5),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -68,6 +72,10 @@ class MainStepButtonWidget extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            if (titlePadding != null)
+                              SizedBox(
+                                width: titlePadding,
+                              ),
                             Text(
                               title,
                               style: theme.textTheme.displaySmall?.copyWith(

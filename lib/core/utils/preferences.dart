@@ -17,4 +17,9 @@ class AppPreferences {
       prefs.getString(AppStrings.instagramAccountKey) ?? '';
   set instagramAccountDir(String value) =>
       prefs.setString(AppStrings.instagramAccountKey, value);
+
+  String get instagramAccountDirUnfollowers =>
+      prefs.getString(AppStrings.instagramAccountUnfollowersKey) ?? '';
+  set instagramAccountDirUnfollowers(String value) =>
+      prefs.setString(AppStrings.instagramAccountUnfollowersKey, value);
 }

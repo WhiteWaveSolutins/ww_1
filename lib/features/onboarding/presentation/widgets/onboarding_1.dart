@@ -20,7 +20,7 @@ class Onboarding1Widget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16)
               .copyWith(top: 32),
           child: GradientTextWidget(
-            'Wrapped your instagram',
+            'Unfollowers tracking',
             style: theme.textTheme.displayMedium,
             gradient: AppColors.gradient1,
           ),

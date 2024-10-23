@@ -101,6 +101,9 @@ class $AssetsImagesGen {
   AssetGenImage get firstStep =>
       const AssetGenImage('assets/images/first-step.png');
 
+  /// File path: assets/images/icon.png
+  AssetGenImage get icon => const AssetGenImage('assets/images/icon.png');
+
   /// File path: assets/images/instruction-1.png
   AssetGenImage get instruction1 =>
       const AssetGenImage('assets/images/instruction-1.png');
@@ -223,10 +226,15 @@ class $AssetsImagesGen {
   /// File path: assets/images/story-9.png
   AssetGenImage get story9 => const AssetGenImage('assets/images/story-9.png');
 
+  /// File path: assets/images/unfollowers.png
+  AssetGenImage get unfollowers =>
+      const AssetGenImage('assets/images/unfollowers.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         back,
         firstStep,
+        icon,
         instruction1,
         instruction10,
         instruction11,
@@ -259,7 +267,8 @@ class $AssetsImagesGen {
         story6,
         story7,
         story8,
-        story9
+        story9,
+        unfollowers
       ];
 }
 

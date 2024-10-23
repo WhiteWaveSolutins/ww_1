@@ -12,7 +12,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../../../core/app/theme.dart';
 import '../../../../core/common/widgets/app_button.dart';
 import '../../../../core/constants/colors.dart';
-import '../../../../core/gen/assets.gen.dart';
 import '../manager/watch_data/viewmodel.dart';
 import '../widgets/story/story_10.dart';
 import '../widgets/story/story_14.dart';
@@ -41,24 +40,24 @@ class WatchDataPage extends StatelessWidget {
                 padding: EdgeInsets.all(16),
                 child: Row(
                   children: [
-                    Expanded(
-                      child: AppButtonWidget(
-                        color: AppColors.onSurface,
-                        icon: Assets.icons.privacy.image(
-                          width: 15,
-                          height: 15,
-                        ),
-                        child: Text(
-                          'Reveal more',
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 9,
-                    ),
+                    // Expanded(
+                    //   child: AppButtonWidget(
+                    //     color: AppColors.onSurface,
+                    //     icon: Assets.icons.privacy.image(
+                    //       width: 15,
+                    //       height: 15,
+                    //     ),
+                    //     child: Text(
+                    //       'Reveal more',
+                    //       style: theme.textTheme.bodyLarge?.copyWith(
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: 9,
+                    // ),
                     Expanded(
                       child: Builder(builder: (context) {
                         final viewModel = context.watch<WatchDataViewModel>();
