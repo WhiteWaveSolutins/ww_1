@@ -36,6 +36,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/browser.png
   AssetGenImage get browser => const AssetGenImage('assets/icons/browser.png');
 
+  /// File path: assets/icons/contact_support.png
+  AssetGenImage get contactSupport =>
+      const AssetGenImage('assets/icons/contact_support.png');
+
   /// File path: assets/icons/error-icon.png
   AssetGenImage get errorIcon =>
       const AssetGenImage('assets/icons/error-icon.png');
@@ -77,6 +81,7 @@ class $AssetsIconsGen {
         arrowBack,
         arrowForward,
         browser,
+        contactSupport,
         errorIcon,
         instagramIcon,
         lock,

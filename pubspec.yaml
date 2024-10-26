@@ -52,7 +52,7 @@ flutter_gen:
     lottie: true
 
 flutter_native_splash:
-  image: assets/images/icon.png
+  image: assets/images/icon_rounded.png
   color: '#FFFFFF'
 
 flutter_launcher_icons:

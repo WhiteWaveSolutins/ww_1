@@ -11,5 +11,5 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await RemoteConfigService.I.init();
-  runApp(const App());
+  runApp(const InstagramUnfollowersTracker());
 }

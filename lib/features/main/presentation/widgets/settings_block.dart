@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/gen/assets.gen.dart';
+import '../../../../core/utils/email_helper.dart';
 import '../../domain/repositories/config.dart';
 import 'settings_tile.dart';
 
@@ -39,7 +40,7 @@ class SettingsBlockWidget extends StatelessWidget {
                     onClick: () => showAboutDialog(
                       context: context,
                       applicationVersion: '1.0.0',
-                      applicationName: 'Wraplt',
+                      applicationName: 'Instagram unfollowers: tracker',
                     ),
                     icon: Assets.icons.version.image(
                       width: 15,
@@ -81,12 +82,25 @@ class SettingsBlockWidget extends StatelessWidget {
                         await launchUrlString(url);
                       }
                     },
-                    icon: Assets.icons.rate.image(
+                    icon: Assets.icons.terms.image(
                       width: 15,
                       height: 13,
                     ),
-                    bottom: false,
+                    bottom: true,
                     title: 'Terms of Use',
+                  ),
+                  SettingsTileWidget(
+                    onClick: () => EmailHelper.launchEmailSubmission(
+                      toEmail: 'sertachindistan0617@outlook.com',
+                      subject: 'Contact with support',
+                      body: '"Your message here!"',
+                    ),
+                    icon: Assets.icons.contactSupport.image(
+                      width: 18,
+                      height: 18,
+                    ),
+                    bottom: false,
+                    title: 'Contact support',
                   ),
                 ],
               ),

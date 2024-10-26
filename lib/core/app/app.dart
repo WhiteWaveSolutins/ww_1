@@ -7,13 +7,13 @@ import 'theme.dart';
 
 final appRouter = AppRouter();
 
-class App extends StatelessWidget {
-  const App({super.key});
+class InstagramUnfollowersTracker extends StatelessWidget {
+  const InstagramUnfollowersTracker({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'App1',
+      title: 'Instagram unfollowers: tracker',
       debugShowCheckedModeBanner: false,
       theme: theme,
       routerConfig: appRouter.config(
