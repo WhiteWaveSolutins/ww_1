@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../constants/colors.dart';
+
 final theme = ThemeData(
   useMaterial3: true,
+  dialogTheme: DialogTheme(),
+  appBarTheme: AppBarTheme(
+    titleTextStyle: TextStyle(
+      fontFamily: 'Prompt',
+      color: AppColors.surface,
+      fontSize: 20,
+    ),
+  ),
+  fontFamily: 'Prompt',
   textTheme: TextTheme(
     headlineLarge: TextStyle(
       fontSize: 140,

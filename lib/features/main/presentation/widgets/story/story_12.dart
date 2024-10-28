@@ -76,12 +76,15 @@ class Story12Widget extends StatelessWidget {
                               SizedBox(
                                 height: 8,
                               ),
-                              Text(
-                                comments.firstOrNull?.stringMapData?.comment
-                                        ?.value ??
-                                    '',
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  fontFamily: 'Prompt',
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  comments.firstOrNull?.stringMapData?.comment
+                                          ?.value ??
+                                      '',
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    fontFamily: 'Prompt',
+                                  ),
                                 ),
                               ),
                             ],
@@ -134,12 +137,15 @@ class Story12Widget extends StatelessWidget {
                               SizedBox(
                                 height: 8,
                               ),
-                              Text(
-                                comments.lastOrNull?.stringMapData?.comment
-                                        ?.value ??
-                                    '',
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  fontFamily: 'Prompt',
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  comments.lastOrNull?.stringMapData?.comment
+                                          ?.value ??
+                                      '',
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    fontFamily: 'Prompt',
+                                  ),
                                 ),
                               ),
                             ],

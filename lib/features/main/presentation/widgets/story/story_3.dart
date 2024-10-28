@@ -36,6 +36,7 @@ class Story3Widget extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: Colors.white,
+                      fontFamily: 'Prompt',
                     ),
                   ),
                   Expanded(
