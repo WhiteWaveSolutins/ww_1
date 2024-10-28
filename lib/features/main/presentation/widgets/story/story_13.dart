@@ -63,6 +63,7 @@ class Story13Widget extends StatelessWidget {
                             viewModel.dateFormat.format(date2),
                             style: theme.textTheme.displayMedium?.copyWith(
                               color: AppColors.tertiary,
+                              fontFamily: 'Prompt',
                             ),
                           ),
                         ),
@@ -103,6 +104,7 @@ class Story13Widget extends StatelessWidget {
                               viewModel.dateFormat.format(date1),
                               style: theme.textTheme.displayMedium?.copyWith(
                                 color: AppColors.tertiary,
+                                fontFamily: 'Prompt',
                               ),
                             ),
                           ),

@@ -80,7 +80,9 @@ class Story12Widget extends StatelessWidget {
                                 comments.firstOrNull?.stringMapData?.comment
                                         ?.value ??
                                     '',
-                                style: theme.textTheme.bodyMedium,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontFamily: 'Prompt',
+                                ),
                               ),
                             ],
                           ),
@@ -136,7 +138,9 @@ class Story12Widget extends StatelessWidget {
                                 comments.lastOrNull?.stringMapData?.comment
                                         ?.value ??
                                     '',
-                                style: theme.textTheme.bodyMedium,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontFamily: 'Prompt',
+                                ),
                               ),
                             ],
                           ),

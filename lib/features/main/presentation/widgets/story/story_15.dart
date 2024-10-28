@@ -66,6 +66,7 @@ class Story15Widget extends StatelessWidget {
                       viewModel.lastUsernameSearched,
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: Colors.white,
+                        fontFamily: 'Prompt',
                       ),
                     ),
                   ),

@@ -158,6 +158,7 @@ class TopicItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontSize: 14,
+                  fontFamily: 'Prompt',
                 ),
               ),
             )

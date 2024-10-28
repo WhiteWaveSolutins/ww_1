@@ -114,6 +114,7 @@ class _UserItemWidget extends StatelessWidget {
                     title,
                     style: theme.textTheme.displaySmall?.copyWith(
                       color: Colors.white,
+                      fontFamily: 'Prompt',
                     ),
                   ),
                 ),

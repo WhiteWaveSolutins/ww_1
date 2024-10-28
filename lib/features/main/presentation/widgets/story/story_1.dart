@@ -55,6 +55,7 @@ class Story1Widget extends StatelessWidget {
                         viewModel.username,
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: AppColors.tertiary,
+                          fontFamily: 'Prompt',
                         ),
                       ),
                     ),

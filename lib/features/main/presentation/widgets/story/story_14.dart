@@ -44,6 +44,7 @@ class Story14Widget extends StatelessWidget {
                     value.$1.split(' ').first,
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: Colors.white,
+                      fontFamily: 'Prompt',
                     ),
                   ),
                   Expanded(child: SizedBox()),

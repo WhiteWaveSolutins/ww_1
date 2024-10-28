@@ -109,6 +109,7 @@ class _UserItemWidget extends StatelessWidget {
                 user.author?.value ?? '',
                 style: theme.textTheme.displaySmall?.copyWith(
                   color: AppColors.surface,
+                  fontFamily: 'Prompt',
                 ),
               ),
             ),

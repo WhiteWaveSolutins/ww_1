@@ -85,6 +85,7 @@ class Story8Widget extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: AppColors.tertiary,
+                      fontFamily: 'Prompt',
                     ),
                   ),
                 ],
