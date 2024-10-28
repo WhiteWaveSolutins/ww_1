@@ -17,7 +17,9 @@ class SettingsPage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           SizedBox.expand(
-            child: Assets.images.back.image(),
+            child: Assets.images.back.image(
+               fit: BoxFit.cover, 
+            ),
           ),
           SizedBox.expand(
             child: CustomScrollView(
